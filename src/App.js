@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './NavBar';
+
+
+let headerLinks = [
+  'Home',
+  'About',
+  'Contact',
+]
+
+
+let footerLinks = [
+  'Home',
+  'About',
+  'Contact',
+  'FAQs',
+  'Subscribe',
+  'Terms & Conditions'
+]
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <NavBar links={headerLinks} theme="light" />
+      <NavBar links={footerLinks} theme="dark" />
+
     </div>
   );
 }
 
 export default App;
+
