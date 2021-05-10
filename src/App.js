@@ -86,7 +86,12 @@ function App() {
         </button>
       </div>
 
-      <div style={{minHeight: 'calc(100vh - 462px)'}}></div>
+      <div 
+      id="card-section"
+      className="d-flex my-4 justify-content-between"
+      style={{minHeight: 'calc(100vh - 462px)'}}>
+
+      </div>
 
       <NavBar links={footerLinks} theme="dark" />
 
@@ -95,4 +100,5 @@ function App() {
 }
 
 export default App;
+
 
