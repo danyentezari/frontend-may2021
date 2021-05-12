@@ -1,32 +1,13 @@
 import React from 'react';
 import './App.css';
-import NavBar from './NavBar';
 import Card from './Card';
 import Carousel from './Carousel';
-
-let headerLinks = [
-  {label: 'Home', path: '/'},
-  {label: 'About', path: '/about'},
-  {label: 'Contact', path: '/contact'},
-]
-
-let footerLinks = [
-  {label: 'Home', path: '/'},
-  {label: 'About', path: '/about'},
-  {label: 'Contact', path: '/contact'},
-  {label: 'FAQs', path:'/faqs'},
-  {label: 'Subscribe', path: '/subscribe'},
-  {label: 'Terms & Conditions', path: '/terms-and-conditions'}
-]
 
 
 function MainScreen() {
 
   return (
     <div>
-
-      <NavBar links={headerLinks} theme="light" />
-  
       <Carousel />
 
       <div 
@@ -64,11 +45,7 @@ function MainScreen() {
             </div>
           </div>
         </div>
-
       </div>
-
-      <NavBar links={footerLinks} theme="dark" />
-
     </div>
   );
 }
