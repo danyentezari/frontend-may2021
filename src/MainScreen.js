@@ -5,19 +5,18 @@ import Card from './Card';
 import Carousel from './Carousel';
 
 let headerLinks = [
-  'Home',
-  'About',
-  'Contact',
+  {label: 'Home', path: '/'},
+  {label: 'About', path: '/about'},
+  {label: 'Contact', path: '/contact'},
 ]
 
-
 let footerLinks = [
-  'Home',
-  'About',
-  'Contact',
-  'FAQs',
-  'Subscribe',
-  'Terms & Conditions'
+  {label: 'Home', path: '/'},
+  {label: 'About', path: '/about'},
+  {label: 'Contact', path: '/contact'},
+  {label: 'FAQs', path:'/faqs'},
+  {label: 'Subscribe', path: '/subscribe'},
+  {label: 'Terms & Conditions', path: '/terms-and-conditions'}
 ]
 
 
