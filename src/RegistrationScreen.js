@@ -49,7 +49,7 @@ function RegistrationScreen() {
             formData.append('contactNumber', contactField.value);
             formData.append('address', addressField.value);
 
-            fetch('http://localhost:3001/user/add', {
+            fetch(`${process.env.REACT_APP_API_ENDPOINT}/user/add`, {
                 method: 'POST',
                 //headers: {"Content-Type": "application/json"},
                 body: formData
