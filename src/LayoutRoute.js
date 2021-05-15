@@ -6,6 +6,7 @@ let headerLinks = [
     {label: 'Home', path: '/'},
     {label: 'About', path: '/about'},
     {label: 'Contact', path: '/contact'},
+    {label: 'Register', path: '/register'},
 ]
   
 let footerLinks = [
