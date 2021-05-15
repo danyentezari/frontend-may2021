@@ -5,12 +5,16 @@ function RegistrationScreen() {
     // "initial", "sending", "successful", "unsuccessful", "validation error"
     const [state, setState] = useState("initial"); 
 
+    // Declare undefined variables for later assignment (ref props)
     let firstNameField;
     let lastNameField;
     let emailField;
     let passwordField;
     let contactField;
     let addressField;
+
+    // To instantiate a FormData object
+    const formData = new FormData();
 
     const register = () => {
 
@@ -38,12 +42,29 @@ function RegistrationScreen() {
         else {
             setState("sending");
 
-            fetch('')
+            formData.append('firstName', firstNameField.value);
+            formData.append('lastName', lastNameField.value);
+            formData.append('email', emailField.value);
+            formData.append('password', passwordField.value);
+            formData.append('contactNumber', contactField.value);
+            formData.append('address', addressField.value);
+
+            fetch('http://localhost:3001/user/add', {
+                method: 'POST',
+                //headers: {"Content-Type": "application/json"},
+                body: formData
+            })
             // 2.1 If the submission is successful, set the state "successful"
             .then((backendResponse)=> backendResponse.json())
-            .then((theJson)=>console.log(theJson))
+            .then((theJson)=>{
+                console.log(theJson);
+                setState("successful");
+            })
             // 2.2 If the submission is unsuccessful, set the state "unsuccessful"
-            .catch((error)=>console.log(error))
+            .catch((error)=>{
+                console.log(error);
+                setState("unsuccessful")
+            });
         }
     }
 
