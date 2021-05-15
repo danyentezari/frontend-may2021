@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 function RegistrationScreen() {
 
-    const [state, setState] = useState("initial");
+    // "initial", "sending", "successful", "unsuccessful", "validation error"
+    const [state, setState] = useState("validation error"); 
 
     return (
         <div className="container" style={{maxWidth: 600, minHeight: 'calc(100vh - 112px)'}}>
@@ -40,21 +41,38 @@ function RegistrationScreen() {
                 <input type="text" class="form-control" id="address" aria-describedby="address" />
             </div>
 
-            <button className="btn btn-primary mb-3" type="button">Submit</button>
+            {
+                state !== "sending" && state !== "successful" &&
+                <button className="btn btn-primary mb-3" type="button">Submit</button>
+            }
 
-            <div class="alert alert-danger" role="alert">
-                Please enter correct values.
-            </div>
+            { 
+                state === "validation error" &&
+                <div class="alert alert-danger" role="alert">
+                    Please enter correct values.
+                </div>
+            }
 
-            <div class="alert alert-success" role="alert">
-                You have registered successfully!
-            </div>
+            {
+                state === "successful" &&
+                <div class="alert alert-success" role="alert">
+                    You have registered successfully!
+                </div>
+            }
 
-            <div class="alert alert-danger" role="alert">
-                Internal error. Please try again later.
-            </div>
 
-            <p>Loading...</p>
+            {
+                state === "unsuccessful" &&
+                <div class="alert alert-danger" role="alert">
+                    Internal error. Please try again later.
+                </div>
+            }
+
+            {
+                state === "sending" &&
+                <p>Loading...</p>
+            }
+
 
 
         </div>
