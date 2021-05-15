@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function RegistrationScreen() {
 
     // "initial", "sending", "successful", "unsuccessful", "validation error"
-    const [state, setState] = useState("validation error"); 
+    const [state, setState] = useState("initial"); 
 
     return (
         <div className="container" style={{maxWidth: 600, minHeight: 'calc(100vh - 112px)'}}>
@@ -59,7 +59,6 @@ function RegistrationScreen() {
                     You have registered successfully!
                 </div>
             }
-
 
             {
                 state === "unsuccessful" &&
