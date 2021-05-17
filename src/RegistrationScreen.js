@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 
+
+// RegEx (Regular Expressions)
+const validateEmail = (email) => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+const validatePassword = (password) => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
+    return re.test(password);
+}
+
 function RegistrationScreen() {
 
     // "initial", "sending", "successful", "unsuccessful", "validation error"
     const [state, setState] = useState("initial"); 
+    const [errorsState, setErrorsState] = useState([]);
 
     // Declare undefined variables for later assignment (ref props)
     let firstNameField;
@@ -27,20 +40,23 @@ function RegistrationScreen() {
         if(lastNameField.value.length == 0) {
             errors.push("Please enter your last name");
         }
-        if(emailField.value.length == 0) {
+        if(!validateEmail(emailField.value)) {
             errors.push("Please enter a valid email address");
         }
-        if(passwordField.value.length == 0) {
+        if(!validatePassword(passwordField.value)) {
             errors.push("Please enter a valid password");
         }
 
         // 1.1 If there are errors, set the state to "validation error"
         if(errors.length > 0) {
             setState("validation error");
+            // Populate the alert box with the errors
+            setErrorsState(errors);
         }
         // 1.2 If there are no errors, set the state to "sending"
         else {
             setState("sending");
+            setErrorsState([]);
 
             formData.append('firstName', firstNameField.value);
             formData.append('lastName', lastNameField.value);
@@ -63,7 +79,7 @@ function RegistrationScreen() {
             // 2.2 If the submission is unsuccessful, set the state "unsuccessful"
             .catch((error)=>{
                 console.log(error);
-                setState("unsuccessful")
+                setState("unsuccessful");
             });
         }
     }
@@ -114,7 +130,13 @@ function RegistrationScreen() {
             { 
                 state === "validation error" &&
                 <div className="alert alert-danger" role="alert">
-                    Please enter correct values.
+                   <ul>
+                   {
+                       errorsState.map(
+                        (error) => <li>{error}</li>
+                       )
+                   }
+                   </ul>
                 </div>
             }
 
