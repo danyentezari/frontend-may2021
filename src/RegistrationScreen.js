@@ -19,6 +19,7 @@ function RegistrationScreen() {
     const [errorsState, setErrorsState] = useState([]);
 
     // Declare undefined variables for later assignment (ref props)
+    let avatarField;
     let firstNameField;
     let lastNameField;
     let emailField;
@@ -28,6 +29,19 @@ function RegistrationScreen() {
 
     // To instantiate a FormData object
     const formData = new FormData();
+
+    const attachFile = (evt) => {
+
+        // Create an array for the files attached
+        const files = Array.from(evt.target.files);
+
+        // Append each file to the formData
+        files.forEach(
+            (file, index) => {
+                formData.append(index, file);
+            }
+        )
+    }
 
     const register = () => {
 
@@ -88,6 +102,13 @@ function RegistrationScreen() {
         <div className="container" style={{maxWidth: 600, minHeight: 'calc(100vh - 112px)'}}>
 
             <h1 className="py-5">Registration</h1>
+
+            <div className="mb-3">
+                <label for="avatar" className="form-label">Avatar</label>
+                <input 
+                onChange={attachFile}
+                ref={ (elem)=>avatarField = elem } type="file" className="form-control" id="avatar" aria-describedby="avatar" />
+            </div>
 
             <div className="mb-3">
                 <label for="firstName" className="form-label">First Name</label>
