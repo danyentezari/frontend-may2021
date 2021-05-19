@@ -14,6 +14,9 @@ function LoginScreen() {
 
     return (
         <div className="container" style={{maxWidth: 600, minHeight: 'calc(100vh - 112px)'}}>
+
+            <h1 className="py-5">Login</h1>
+
             <div className="mb-3">
                 <label for="email" className="form-label">Email address</label>
                 <input ref={ (elem)=>emailField = elem } type="email" className="form-control" id="email" aria-describedby="emailHelp" />
@@ -28,7 +31,6 @@ function LoginScreen() {
             {
                 state !== "sending" && state !== "successful" &&
                 <button 
-                onClick={register}
                 className="btn btn-primary mb-3" type="button">Submit</button>
             }
         </div>
