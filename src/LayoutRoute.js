@@ -7,6 +7,7 @@ let headerLinks = [
     {label: 'About', path: '/about'},
     {label: 'Contact', path: '/contact'},
     {label: 'Login', path: '/login'},
+    {label: 'Profile', path: '/profile'},
 ]
   
 let footerLinks = [

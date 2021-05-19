@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+// Connect to the context (i.e, global state)
+import {UserContext} from './UserContext';
+
 
 // RegEx (Regular Expressions)
 const validateEmail = (email) => {
@@ -15,6 +18,7 @@ function LoginScreen() {
 
     // "initial", "sending", "successful", "unsuccessful"
     const [state, setState] = useState("initial");
+    const { updateUser } = useContext(UserContext);
     
     // Declare undefined variables for later assignment (ref props)
     let emailField;
@@ -55,6 +59,16 @@ function LoginScreen() {
             .then((backendResponse)=> backendResponse.json())
             .then((theJson)=>{
                 console.log(theJson);
+
+                updateUser(
+                    {
+                        jsonwebtoken: theJson.jsonwebtoken,
+                        firstName: theJson.firstName,
+                        lastName: theJson.lastName,
+                        email: theJson.email,
+                        avatar: theJson.avatar
+                    }
+                )
                 setState("successful");
             })
             // 2.2 If the submission is unsuccessful, set the state "unsuccessful"

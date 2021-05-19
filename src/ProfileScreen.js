@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+// Connect to the context (i.e, global state)
 import {UserContext} from './UserContext';
 
 function ProfileScreen() {
